@@ -1,6 +1,6 @@
 # Studying SpringBoot
 
-## Thymeleaf
+# Thymeleaf-studying
 该项目，我们用 Thymeleaf 来实现一个最简单的“用户管理”功能。
 
 ## 修改application.properties
@@ -81,3 +81,42 @@ UserRepositoryImpl 作为该类的实现类。
 * list.html：用于展现用户列表；
 * form.html：用于新增或者修改用户的资料；
 * view.html：用户查看某个用户的资料。
+
+# Spring Data JPA
+
+## 修改application.properties
+
+```
+#datasource
+spring.datasource.url=jdbc:mysql://localhost/blog?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+spring.datasource.username=root
+spring.datasource.password=zz199529
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#jpa
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto= create-drop //每次都重新创建表格
+```
+
+## User 实体类
+
+```
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;//唯一标识
+    private String name;
+    private Integer age;
+
+    //设置protected 防止直接使用
+    protected User(){
+    }
+ ```
+
+## UserRepository
+```
+public interface UserRepository extends CrudRepository<User,Long>{
+}
+```
+
