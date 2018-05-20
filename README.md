@@ -120,3 +120,22 @@ public interface UserRepository extends CrudRepository<User,Long>{
 }
 ```
 
+# ElasticSearch
+
+## build.gradle
+```
+	//spring data elasticsearch
+	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+	//jna
+	compile('net.java.dev.jna:jna:4.3.0')
+```
+
+## application.properties
+
+```
+# 服务地址
+spring.data.elasticsearch.cluster-nodes=localhost:9300
+#设置连接超时时间
+spring.data.elasticsearch.properties.transport.tcp.connect_timeout=120s
+```
+
