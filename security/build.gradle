@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	ext['thymeleaf.version'] = '3.0.9.RELEASE'
+	ext['thymeleaf-layout-dialect.version'] = '2.2.0'
+	// 自定义  Hibernate 的版本
+	ext['hibernate.version'] = '5.2.8.Final'
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.zz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	//Thymeleaf
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	//Spring data jpa
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	//Mysql
+	compile('mysql:mysql-connector-java:6.0.5')
+	//security
+	compile('org.springframework.boot:spring-boot-starter-security')
+	//thymeleaf security
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
+	//h2
+	runtime('com.h2database:h2:1.4.193')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

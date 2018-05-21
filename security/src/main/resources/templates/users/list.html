@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <h2 th:text="${userModel.title}">ZZ</h2>
+        </div>
+
+        <div class="row">
+            <p>
+                <a class="btn btn-primary" href="/users/form" role="button">Create a new user</a>
+            </p>
+        </div>
+
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Age</td>
+                        <td>Name</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${userModel.userList.size()} eq 0">
+                    <td colspan="3">No user</td>
+                </tr>
+                <tr th:each="user : ${userModel.userList}">
+                    <td th:text="${user.id}">1</td>
+                    <td th:text="${user.age}" >12</td>
+                    <td><a th:href="@{'users/'+${user.id}}" th:text="${user.name}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

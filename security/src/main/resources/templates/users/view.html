@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 th:text="${userModel.title}">ZZ</h2>
+    </div>
+
+    <div class="row">
+        <p>
+            <a class="btn btn-primary" href="/users" role="button">Back</a>
+        </p>
+    </div>
+
+    <div class="row">
+        <div th:object="${userModel.user}">
+            <p><strong>ID: </strong><span th:text="*{id}">123</span></p>
+            <p><strong>Name: </strong><span th:text="*{name}">ZZ</span></p>
+            <p><strong>Age: </strong><span th:text="*{age}">12</span></p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <a th:href="@{'/users/delete/'+${userModel.user.id}}">Delete</a>
+        <a th:href="@{'/users/modify/'+${userModel.user.id}}">Modify</a>
+    </div>
+
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+</body>
+</html>
