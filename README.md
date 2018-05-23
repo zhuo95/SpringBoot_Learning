@@ -122,6 +122,27 @@ public interface UserRepository extends CrudRepository<User,Long>{
 
 # ElasticSearch
 
+## 分布式
+elasticsearch 可分为很多clusters，每个clusters上可以有很多nodes，由一个master node 控制读写
+每个node中可存放多个分片（shard），shard 分为primary shard 和 replica shard，后者用于备份。
+shard里存放着文档
+
+一个文档不只有数据。它还包含了元数据(metadata)——关于文档的信息。三个必须的元数据节点是：
+* _index : 文档存储的地方
+* _type : 文档的对象类
+* -id ：文档的唯一标识
+
+
+
+如何路由文档到分片？
+当你索引一个文档，它被存储在单独一个主分片上。Elasticsearch是如何知道文档属于哪个分片的呢？当你创建一个新文档，它是如何知道是应该存储在分片1还是分片2上的呢？
+进程不能是随机的，因为我们将来要检索文档。事实上，它根据一个简单的算法决定：
+```
+shard = hash(routing) % number_of_primary_shards
+```
+
+
+
 ## build.gradle
 ```
 	//spring data elasticsearch
